@@ -3,7 +3,7 @@ import router from './router'
 import App from './App.vue'
 import { createI18n } from 'vue-i18n'
 import unoverlay from '@overlays/vue'
-import { loadLocaleMessages } from '@web-video-filter/locale'
+import { loadLocaleMessages } from '@tetap-demo/locale'
 import './theme/global.scss'
 
 const app = createApp(App)
