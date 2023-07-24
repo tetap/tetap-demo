@@ -1,0 +1,44 @@
+{
+  "name": "web_video_filter",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "pnpm run start",
+    "start": "pnpm run -C packages/main dev",
+    "lint:eslint": "eslint --fix --ext .js,.ts,.tsx ./packages",
+    "lint:prettier": "prettier --write --loglevel warn \"packages/**/*.{js,ts,json,tsx,css,less,scss,html,md}\"",
+    "lint:stylelint": "stylelint --fix \"**/*.{less,postcss,css,scss}\"",
+    "format": "npm run lint:eslint && npm run lint:stylelint && npm run lint:prettier"
+  },
+  "lint-staged": {
+    "packages/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write --loglevel warn"
+    ],
+    "packages/**/*.{less,postcss,css,scss}": [
+      "stylelint --fix --custom-syntax postcss-less --cache --cache-location node_modules/.cache/stylelint/"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^18.7.6",
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/parser": "^5.33.1",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^11.0.0",
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.3.0",
+    "lint-staged": "^13.0.3",
+    "path": "^0.12.7",
+    "prettier": "^2.7.1",
+    "sass": "^1.54.4",
+    "stylelint": "^14.10.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recess-order": "^3.0.0",
+    "stylelint-config-standard": "^27.0.0",
+    "stylelint-scss": "^4.3.0",
+    "typescript": "^4.6.4"
+  }
+}
