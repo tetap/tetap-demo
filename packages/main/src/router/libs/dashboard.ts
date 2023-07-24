@@ -1,7 +1,7 @@
 export default [
   {
     path: '/',
-    name: 'home',
-    component: () => import(/* webpackChunkName: "home" */ '@/pages/HomeView.vue')
+    name: 'dashboard',
+    component: () => import('@/pages/dashboard/index.vue')
   }
 ]

@@ -1,5 +1,5 @@
 {
-  "name": "@web_video_filter/locale",
+  "name": "@web-video-filter/locale",
   "version": "1.0.0",
   "description": "翻译",
   "main": "index.ts",
@@ -7,8 +7,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "vue-i18n": "^9.2.2"
-  }
+  "license": "ISC"
 }

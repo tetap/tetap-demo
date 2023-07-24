@@ -1,11 +1,9 @@
-import { createI18n } from 'vue-i18n'
-import ZHCN from './langs/ZH-CN.json'
-
-export const i18n = createI18n({
-  legacy: false,
-  locale: 'zh-CN',
-  fallbackLocale: 'zh-CN',
-  messages: {
-    'zh-CN': ZHCN
-  }
-})
+/*
+ *@description: 异步加载语言
+ *@author: zyc
+ *@date-time: 2023-07-24 14:54:32
+ */
+export async function loadLocaleMessages(i18n: any, locale: string) {
+  const messages = await import(`./langs/${locale}.json`)
+  i18n.global.setLocaleMessage(locale, messages.default)
+}
