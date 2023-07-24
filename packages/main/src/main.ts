@@ -10,16 +10,20 @@ const app = createApp(App)
 
 const i18n = createI18n({
   legacy: false,
-  locale: 'zh-CN',
-  fallbackLocale: 'zh-CN',
+  locale: 'ZH-CN',
+  fallbackLocale: 'ZH-CN',
   messages: {}
 })
 
 app.use(i18n).use(unoverlay).use(router)
 
-/** 异步加载语言包 */
-loadLocaleMessages(i18n, 'zh-CN').finally(() => {
-  document.getElementById('loading')?.classList?.add('hidden')
-})
-
 app.mount('#app')
+
+/** 异步加载语言包 */
+loadLocaleMessages(i18n, 'ZH-CN')
+  .catch((message) => {
+    console.error('loadLocaleMessages', message)
+  })
+  .finally(() => {
+    document.getElementById('loading')?.classList?.add('hidden')
+  })

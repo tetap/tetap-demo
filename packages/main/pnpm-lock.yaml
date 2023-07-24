@@ -2,10 +2,10 @@ lockfileVersion: 5.3
 
 specifiers:
   '@overlays/vue': ^0.4.6
+  '@tetap-demo/locale': workspace:*
   '@types/lodash': ^4.14.183
   '@types/node': ^18.7.6
   '@vitejs/plugin-vue': ^3.2.0
-  '@web-video-filter/locale': workspace:*
   autoprefixer: ^10.4.14
   axios: ^0.27.2
   lodash: ^4.17.21
@@ -26,7 +26,7 @@ specifiers:
 
 dependencies:
   '@overlays/vue': 0.4.6
-  '@web-video-filter/locale': link:../locale
+  '@tetap-demo/locale': link:../locale
   axios: 0.27.2
   lodash: 4.17.21
   normalize.css: 8.0.1

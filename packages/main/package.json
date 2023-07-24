@@ -1,5 +1,5 @@
 {
-  "name": "@web-video-filter/main",
+  "name": "@tetap-demo/main",
   "private": true,
   "version": "1.0.0",
   "scripts": {
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@overlays/vue": "^0.4.6",
-    "@web-video-filter/locale": "workspace:*",
+    "@tetap-demo/locale": "workspace:*",
     "axios": "^0.27.2",
     "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
