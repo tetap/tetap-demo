@@ -1,14 +1,15 @@
 <template>
-  <h1
-    class="text-3xl font-bold text-black dark:text-white"
-    style="font-family: 'Indie Flower', cursive"
-  >
-    {{ $t('title') }}
-  </h1>
+  <div class="min-h-screen flex flex-col">
+    <Header />
+    <Container>
+      <div>123</div>
+    </Container>
+    <Footer />
+  </div>
 </template>
 
-<script setup lang="ts"></script>
-
-<style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-</style>
+<script setup lang="ts">
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
+import Container from './components/Container.vue'
+</script>
