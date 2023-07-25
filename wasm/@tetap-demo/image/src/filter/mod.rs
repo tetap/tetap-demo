@@ -4,3 +4,4 @@ pub mod invert;
 pub mod hue;
 pub mod saturation;
 pub mod promotion;
+pub mod blur;
