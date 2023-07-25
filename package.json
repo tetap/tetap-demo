@@ -8,7 +8,8 @@
     "lint:eslint": "eslint --fix --ext .js,.ts,.tsx ./packages",
     "lint:prettier": "prettier --write --loglevel warn \"packages/**/*.{js,ts,json,tsx,css,less,scss,html,md}\"",
     "lint:stylelint": "stylelint --fix \"**/*.{less,postcss,css,scss}\"",
-    "format": "npm run lint:eslint && npm run lint:stylelint && npm run lint:prettier"
+    "format": "npm run lint:eslint && npm run lint:stylelint && npm run lint:prettier",
+    "tetap": "yr-cli"
   },
   "lint-staged": {
     "packages/**/*.{js,jsx,ts,tsx}": [
@@ -19,7 +20,6 @@
       "stylelint --fix --custom-syntax postcss-less --cache --cache-location node_modules/.cache/stylelint/"
     ]
   },
-  "dependencies": {},
   "devDependencies": {
     "@types/node": "^18.7.6",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
@@ -39,6 +39,7 @@
     "stylelint-config-recess-order": "^3.0.0",
     "stylelint-config-standard": "^27.0.0",
     "stylelint-scss": "^4.3.0",
-    "typescript": "^4.6.4"
+    "typescript": "^4.6.4",
+    "yr-cli": "^0.1.6"
   }
 }

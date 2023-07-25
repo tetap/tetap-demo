@@ -10,7 +10,7 @@
           <img
             src="https://avatars.githubusercontent.com/u/57606461?v=4"
             alt="LOGO"
-            class="shadow md:mb-3 mx-auto w-9 h-9 xl:w-12 xl:h-12 object-cover rounded-full"
+            class="shadow mx-auto w-12 h-12 object-cover rounded-full"
           />
         </a>
       </div>
