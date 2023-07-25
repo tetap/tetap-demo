@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .vscode
+
+#pnpm
+pnpm-lock.yaml
