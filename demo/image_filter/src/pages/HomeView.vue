@@ -99,6 +99,7 @@ import { ref, onMounted, reactive } from 'vue'
 import { FileUtils } from '@tetap-demo/tools/file'
 import { ImageUtils } from '@tetap-demo/tools/image'
 import DropFile from './components/DropFile.vue'
+import init, { grayscale_strength, grayscale, heat_up } from '@tetap-demo/image'
 
 const canvas = ref<HTMLCanvasElement>()
 const filterOptions = reactive({
@@ -147,6 +148,15 @@ async function drawFileHandle(file: File) {
   offsetCtx.drawImage(image, 0, 0, width, height)
   ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
   ctx.drawImage(offsetCanvas, x, y)
+  init().then(() => {
+    const imageData = ctx.getImageData(0, 0, canvasEl.width, canvasEl.height)
+    console.time('grayscale')
+    grayscale_strength(imageData.data as any, 1)
+    grayscale(imageData.data as any)
+    heat_up(imageData.data as any, 1)
+    console.timeEnd('grayscale')
+    ctx.putImageData(imageData, 0, 0)
+  })
 }
 
 function handleChange() {
