@@ -102,6 +102,8 @@ import DropFile from './components/DropFile.vue'
 import init, { promotion, saturation, hue, heat_up, grayscale_strength } from '@tetap-demo/image'
 
 const canvas = ref<HTMLCanvasElement>()
+let canvasEl: HTMLCanvasElement | undefined
+let ctx: CanvasRenderingContext2D | null
 const filterOptions: Record<string, number> = reactive({
   brightness: 0,
   contrast: 0,
@@ -111,12 +113,12 @@ const filterOptions: Record<string, number> = reactive({
   grayscale: 0
 })
 onMounted(() => {
-  const canvasEl = canvas.value
+  canvasEl = canvas.value
   if (!canvasEl) throw new Error('canvas not found')
-  const ctx = canvasEl.getContext('2d')
+  ctx = canvasEl.getContext('2d', { willReadFrequently: true })
   if (!ctx) throw new Error('ctx not found')
-  resizeCanvasEl(canvasEl)
-  window.addEventListener('resize', () => resizeCanvasEl(canvasEl))
+  resizeCanvasEl()
+  window.addEventListener('resize', () => resizeCanvasEl)
 })
 
 let isInit = false
@@ -125,22 +127,24 @@ async function initWasm() {
   await init()
   isInit = true
 }
-
+const cacheMap = new Map()
 /** 当前绘制文件 */
 let currentDrawFile: File | undefined = void 0
 /** 绘制文件 */
 async function drawFileHandle(file?: File) {
-  if (!file) return
+  if (!canvasEl || !ctx || !file) return
   const fileCheck = FileUtils.checkFileType(file, ['image', 'video'])
   if (!fileCheck) return
+  let image = cacheMap.get(file)?.image
   currentDrawFile = file
-  const downFileData = await FileUtils.loadFile<string>((render) => render.readAsDataURL(file))
-  const uri = downFileData
-  const image = await ImageUtils.load(uri)
-  const canvasEl = canvas.value
-  if (!canvasEl) throw new Error('canvas not found')
-  const ctx = canvasEl.getContext('2d', { willReadFrequently: true })
-  if (!ctx) throw new Error('ctx not found')
+  if (!image) {
+    const downFileData = await FileUtils.loadFile<string>((render) => render.readAsDataURL(file))
+    const uri = downFileData
+    const imageLoad = await ImageUtils.load(uri)
+    cacheMap.clear()
+    cacheMap.set(file, { image: imageLoad })
+    image = imageLoad
+  }
   const { x, y, width, height } = ImageUtils.scaleImageRect(image, canvasEl.width, canvasEl.height)
   ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
   ctx.drawImage(image, x, y, width, height)
@@ -178,10 +182,12 @@ async function drawFileHandle(file?: File) {
 }
 
 /** 画布尺寸变更 */
-function resizeCanvasEl(canvasEl: HTMLCanvasElement) {
-  const canvasElBound = canvasEl.getBoundingClientRect()
-  canvasEl.width = canvasElBound.width
-  canvasEl.height = canvasElBound.height
+function resizeCanvasEl() {
+  const canvasElBound = canvasEl?.getBoundingClientRect()
+  if (canvasElBound && canvasEl) {
+    canvasEl.width = canvasElBound.width
+    canvasEl.height = canvasElBound.height
+  }
 }
 
 function handleChange() {
