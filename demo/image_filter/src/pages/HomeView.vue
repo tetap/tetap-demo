@@ -99,6 +99,7 @@ import { ref, onMounted, reactive } from 'vue'
 import { FileUtils } from '@tetap-demo/tools/file'
 import { ImageUtils } from '@tetap-demo/tools/image'
 import DropFile from './components/DropFile.vue'
+import throttle from 'lodash/throttle'
 import init, { promotion, saturation, hue, heat_up, grayscale_strength } from '@tetap-demo/image'
 
 const canvas = ref<HTMLCanvasElement>()
@@ -190,9 +191,10 @@ function resizeCanvasEl() {
   }
 }
 
-function handleChange() {
+const handleChange = throttle(() => {
+  console.log('handleChange')
   drawFileHandle(currentDrawFile)
-}
+}, 300)
 </script>
 
 <style scoped></style>
