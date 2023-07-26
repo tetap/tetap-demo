@@ -14,7 +14,7 @@
           :max="100"
           class="flex-1 w-full"
           v-model.number="filterOptions.brightness"
-          @change="handleChange"
+          @input="handleChange"
         />
         <div class="bg-gray-300 text-center w-14 rounded-lg py-1 flex-none">
           {{ filterOptions.brightness }}
@@ -28,7 +28,7 @@
           :max="100"
           class="flex-1 w-full"
           v-model.number="filterOptions.contrast"
-          @change="handleChange"
+          @input="handleChange"
         />
         <div class="bg-gray-300 text-center w-14 rounded-lg py-1 flex-none">
           {{ filterOptions.contrast }}
@@ -38,14 +38,14 @@
         <div class="flex-none w-14">饱和度</div>
         <input
           type="range"
-          :min="0"
+          :min="-100"
           :max="100"
           class="flex-1 w-full"
-          v-model.number="filterOptions.inverse"
-          @change="handleChange"
+          v-model.number="filterOptions.saturation"
+          @input="handleChange"
         />
         <div class="bg-gray-300 text-center w-14 rounded-lg py-1 flex-none">
-          {{ filterOptions.inverse }}
+          {{ filterOptions.saturation }}
         </div>
       </div>
       <div class="flex items-center space-x-3 text-sm">
@@ -56,7 +56,7 @@
           :max="360"
           class="flex-1 w-full"
           v-model.number="filterOptions.hue"
-          @change="handleChange"
+          @input="handleChange"
         />
         <div class="bg-gray-300 text-center w-14 rounded-lg py-1 flex-none">
           {{ filterOptions.hue }}
@@ -70,7 +70,7 @@
           :max="100"
           class="flex-1 w-full"
           v-model.number="filterOptions.heatUp"
-          @change="handleChange"
+          @input="handleChange"
         />
         <div class="bg-gray-300 text-center w-14 rounded-lg py-1 flex-none">
           {{ filterOptions.heatUp }}
@@ -84,7 +84,7 @@
           :max="100"
           class="flex-1 w-full"
           v-model.number="filterOptions.grayscale"
-          @change="handleChange"
+          @input="handleChange"
         />
         <div class="bg-gray-300 text-center w-14 rounded-lg py-1 flex-none">
           {{ filterOptions.grayscale }}
@@ -99,14 +99,13 @@ import { ref, onMounted, reactive } from 'vue'
 import { FileUtils } from '@tetap-demo/tools/file'
 import { ImageUtils } from '@tetap-demo/tools/image'
 import DropFile from './components/DropFile.vue'
-import init, { grayscale_strength, grayscale, heat_up } from '@tetap-demo/image'
+import init, { promotion, saturation, hue, heat_up, grayscale_strength } from '@tetap-demo/image'
 
 const canvas = ref<HTMLCanvasElement>()
-const filterOptions = reactive({
+const filterOptions: Record<string, number> = reactive({
   brightness: 0,
   contrast: 0,
   saturation: 0,
-  inverse: 0,
   hue: 0,
   heatUp: 0,
   grayscale: 0
@@ -120,19 +119,22 @@ onMounted(() => {
   window.addEventListener('resize', () => resizeCanvasEl(canvasEl))
 })
 
-/** 画布尺寸变更 */
-function resizeCanvasEl(canvasEl: HTMLCanvasElement) {
-  const canvasElBound = canvasEl.getBoundingClientRect()
-  canvasEl.width = canvasElBound.width
-  canvasEl.height = canvasElBound.height
+let isInit = false
+async function initWasm() {
+  if (isInit) return
+  await init()
+  isInit = true
 }
 
+/** 当前绘制文件 */
+let currentDrawFile: File | undefined = void 0
 /** 绘制文件 */
-async function drawFileHandle(file: File) {
+async function drawFileHandle(file?: File) {
+  if (!file) return
   const fileCheck = FileUtils.checkFileType(file, ['image', 'video'])
   if (!fileCheck) return
+  currentDrawFile = file
   const downFileData = await FileUtils.loadFile<string>((render) => render.readAsDataURL(file))
-  // const uri = FileUtils.arrayBufferToBlob(downFileData, file.type)
   const uri = downFileData
   const image = await ImageUtils.load(uri)
   const canvasEl = canvas.value
@@ -140,27 +142,50 @@ async function drawFileHandle(file: File) {
   const ctx = canvasEl.getContext('2d', { willReadFrequently: true })
   if (!ctx) throw new Error('ctx not found')
   const { x, y, width, height } = ImageUtils.scaleImageRect(image, canvasEl.width, canvasEl.height)
-  console.log(width, height)
-
-  const offsetCanvas = new OffscreenCanvas(width, height)
-  const offsetCtx = offsetCanvas.getContext('2d')
-  if (!offsetCtx) throw new Error('offsetCtx not found')
-  offsetCtx.drawImage(image, 0, 0, width, height)
   ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
-  ctx.drawImage(offsetCanvas, x, y)
-  init().then(() => {
-    const imageData = ctx.getImageData(0, 0, canvasEl.width, canvasEl.height)
-    console.time('grayscale')
-    grayscale_strength(imageData.data as any, 1)
-    grayscale(imageData.data as any)
-    heat_up(imageData.data as any, 1)
-    console.timeEnd('grayscale')
-    ctx.putImageData(imageData, 0, 0)
-  })
+  ctx.drawImage(image, x, y, width, height)
+  await initWasm()
+  const imageData = ctx.getImageData(0, 0, canvasEl.width, canvasEl.height)
+  const keys = Object.keys(filterOptions).filter((c) => filterOptions[c] !== 0)
+  let isPromotion = false
+  for (const key of keys) {
+    switch (key) {
+      case 'brightness':
+      case 'contrast':
+        if (isPromotion) break
+        isPromotion = true
+        promotion(
+          imageData.data as any,
+          filterOptions.brightness / 100,
+          filterOptions.contrast / 100
+        )
+        break
+      case 'saturation':
+        saturation(imageData.data as any, filterOptions.saturation / 100)
+        break
+      case 'hue':
+        hue(imageData.data as any, Math.floor((filterOptions.hue / 360) * 100))
+        break
+      case 'heatUp':
+        heat_up(imageData.data as any, filterOptions.heatUp / 100)
+        break
+      case 'grayscale':
+        grayscale_strength(imageData.data as any, filterOptions.grayscale / 100)
+        break
+    }
+  }
+  ctx.putImageData(imageData, 0, 0)
+}
+
+/** 画布尺寸变更 */
+function resizeCanvasEl(canvasEl: HTMLCanvasElement) {
+  const canvasElBound = canvasEl.getBoundingClientRect()
+  canvasEl.width = canvasElBound.width
+  canvasEl.height = canvasElBound.height
 }
 
 function handleChange() {
-  console.log('handleChange')
+  drawFileHandle(currentDrawFile)
 }
 </script>
 
