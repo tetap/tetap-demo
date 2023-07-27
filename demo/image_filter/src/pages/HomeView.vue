@@ -134,8 +134,18 @@ let currentDrawFile: File | undefined = void 0
 /** 绘制文件 */
 async function drawFileHandle(file?: File) {
   if (!canvasEl || !ctx || !file) return
-  const fileCheck = FileUtils.checkFileType(file, ['image', 'video'])
-  if (!fileCheck) return
+  const fileCheckImage = FileUtils.checkFileType(file, ['image'])
+  const fileCheckVideo = FileUtils.checkFileType(file, ['video'])
+  if (fileCheckImage) {
+    drawImageFile(file)
+  } else if (fileCheckVideo) {
+    drawVideoFile(file)
+  }
+  // , 'video'
+}
+
+async function drawImageFile(file: File) {
+  if (!canvasEl || !ctx || !file) return
   let image = cacheMap.get(file)?.image
   currentDrawFile = file
   if (!image) {
@@ -149,8 +159,56 @@ async function drawFileHandle(file?: File) {
   const { x, y, width, height } = ImageUtils.scaleImageRect(image, canvasEl.width, canvasEl.height)
   ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
   ctx.drawImage(image, x, y, width, height)
-  await initWasm()
   const imageData = ctx.getImageData(0, 0, canvasEl.width, canvasEl.height)
+  await filterImageData(imageData)
+  ctx.putImageData(imageData, 0, 0)
+}
+
+async function drawVideoFile(file: File) {
+  if (!canvasEl || !ctx || !file) return
+  const downFileData = await FileUtils.loadFile<string>((render) => render.readAsDataURL(file))
+  const video = document.createElement('video')
+  video.src = FileUtils.blobToUrl(FileUtils.base64ToBlob(downFileData))
+  video.controls = false
+  video.volume = 0
+  video.muted = true
+  video.loop = true
+  video.addEventListener(
+    'play',
+    () => {
+      draw(video)
+    },
+    false
+  )
+  await video.play()
+}
+
+function draw(video: HTMLVideoElement) {
+  requestAnimationFrame(async () => {
+    if (video.paused || video.ended) {
+      return
+    }
+    const { videoWidth: imageWidth, videoHeight: imageHeight } = video
+    if (imageWidth !== 0 && imageHeight !== 0) {
+      video.width = imageWidth
+      video.height = imageHeight
+      const scale = Math.min(canvasEl!.width / imageWidth, canvasEl!.height / imageHeight)
+      const width = Math.floor(imageWidth * scale)
+      const height = Math.floor(imageHeight * scale)
+      const y = Math.floor((canvasEl!.height - height) / 2)
+      const x = Math.floor((canvasEl!.width - width) / 2)
+      ctx!.drawImage(video, x, y, width, height)
+      const imageData = ctx!.getImageData(0, 0, canvasEl!.width, canvasEl!.height)
+      await filterImageData(imageData)
+      ctx!.putImageData(imageData, 0, 0)
+    }
+    draw(video)
+  })
+}
+
+/** 对imageData进行滤镜处理 */
+async function filterImageData(imageData: ImageData) {
+  await initWasm()
   const keys = Object.keys(filterOptions).filter((c) => filterOptions[c] !== 0)
   let isPromotion = false
   for (const key of keys) {
@@ -179,7 +237,7 @@ async function drawFileHandle(file?: File) {
         break
     }
   }
-  ctx.putImageData(imageData, 0, 0)
+  return imageData
 }
 
 /** 画布尺寸变更 */
