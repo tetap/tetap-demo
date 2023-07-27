@@ -8,8 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tetap-demo/tools": "workspace:*",
     "@tetap-demo/image": "workspace:*",
+    "@tetap-demo/tools": "workspace:*",
     "axios": "^0.27.2",
     "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",

@@ -141,7 +141,6 @@ async function drawFileHandle(file?: File) {
   } else if (fileCheckVideo) {
     drawVideoFile(file)
   }
-  // , 'video'
 }
 
 async function drawImageFile(file: File) {
@@ -166,21 +165,28 @@ async function drawImageFile(file: File) {
 
 async function drawVideoFile(file: File) {
   if (!canvasEl || !ctx || !file) return
-  const downFileData = await FileUtils.loadFile<string>((render) => render.readAsDataURL(file))
-  const video = document.createElement('video')
-  video.src = FileUtils.blobToUrl(FileUtils.base64ToBlob(downFileData))
-  video.controls = false
-  video.volume = 0
-  video.muted = true
-  video.loop = true
-  video.addEventListener(
-    'play',
-    () => {
-      draw(video)
-    },
-    false
-  )
-  await video.play()
+  let cacheVideo = cacheMap.get(file)?.video
+  if (!cacheVideo) {
+    const downFileData = await FileUtils.loadFile<string>((render) => render.readAsDataURL(file))
+    const video = document.createElement('video')
+    video.src = FileUtils.blobToUrl(FileUtils.base64ToBlob(downFileData))
+    video.controls = false
+    video.volume = 0
+    video.muted = true
+    video.loop = true
+    video.addEventListener(
+      'play',
+      () => {
+        console.log('play')
+        draw(video)
+      },
+      false
+    )
+    cacheMap.clear()
+    cacheMap.set(file, { video })
+    cacheVideo = video
+  }
+  await cacheVideo.play()
 }
 
 function draw(video: HTMLVideoElement) {
@@ -250,7 +256,6 @@ function resizeCanvasEl() {
 }
 
 const handleChange = throttle(() => {
-  console.log('handleChange')
   drawFileHandle(currentDrawFile)
 }, 300)
 </script>
