@@ -1,12 +1,12 @@
-import { createApp } from "vue";
-import router from "./router";
-import App from "./App.vue";
-import "./theme/global.scss";
+import { createApp } from 'vue'
+import router from './router'
+import App from './App.vue'
+import './theme/global.scss'
 
-const app = createApp(App);
+const app = createApp(App)
 
-app.use(router);
+app.use(router)
 
-app.mount("#app");
+app.mount('#app')
 
-document.getElementById("loading")?.classList?.add("hidden");
+document.getElementById('loading')?.classList?.add('hidden')

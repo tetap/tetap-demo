@@ -203,6 +203,7 @@ function draw(video: HTMLVideoElement) {
       const height = Math.floor(imageHeight * scale)
       const y = Math.floor((canvasEl!.height - height) / 2)
       const x = Math.floor((canvasEl!.width - width) / 2)
+      ctx!.clearRect(0, 0, canvasEl!.width, canvasEl!.height)
       ctx!.drawImage(video, x, y, width, height)
       const imageData = ctx!.getImageData(0, 0, canvasEl!.width, canvasEl!.height)
       await filterImageData(imageData)
