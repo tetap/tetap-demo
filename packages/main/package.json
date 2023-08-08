@@ -23,6 +23,7 @@
   "dependencies": {
     "@overlays/vue": "^0.4.6",
     "@tetap-demo/locale": "workspace:*",
+    "@tetap/components": "workspace:*",
     "axios": "^0.27.2",
     "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
