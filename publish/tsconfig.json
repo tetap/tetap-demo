@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "Node16",
+    "moduleResolution": "node"
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts"],
+  "exclude": ["node_modules", "dist", "release"]
+}

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "pnpm run start",
     "start": "pnpm run -C packages/main dev",
+    "build": "pnpm run -C publish build",
     "lint:eslint": "eslint --fix --ext .js,.ts,.tsx ./packages",
     "lint:prettier": "prettier --write --loglevel warn \"packages/**/*.{js,ts,json,tsx,css,less,scss,html,md}\"",
     "lint:stylelint": "stylelint --fix \"**/*.{less,postcss,css,scss}\"",
