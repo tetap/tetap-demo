@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import sidebar from './sidebar'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -8,23 +9,9 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Docs', link: '/started/install', activeMatch: '/started/' },
-      { text: 'Components', link: '../../components/src/Button/index.md', activeMatch: '/components/' }
+      { text: 'Components', link: '/components/button.md', activeMatch: '/components/' }
     ],
-
-    sidebar: {
-      '/started/': [
-        {
-          text: 'Get Started',
-          items: [{ text: 'Installation', link: '/started/install' }]
-        }
-      ],
-      '/components/': [
-        {
-          text: '通用',
-          items: [{ text: 'Button', link: '../../components/src/Button/index.md' }]
-        }
-      ]
-    },
+    sidebar,
     socialLinks: [{ icon: 'github', link: 'https://github.com/tetap/tetap-demo' }]
   }
 })
