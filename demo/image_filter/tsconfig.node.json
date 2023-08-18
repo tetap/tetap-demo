@@ -7,5 +7,5 @@
     "module": "esnext",
     "moduleResolution": "node"
   },
-  "include": ["vite.config.ts", "manifest.json"]
+  "include": ["vite.config.ts", "package.json"]
 }

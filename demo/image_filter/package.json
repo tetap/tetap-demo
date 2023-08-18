@@ -1,7 +1,9 @@
 {
   "name": "@tetap-demo/image_filter",
   "private": true,
+  "description": "图片/视频滤镜",
   "version": "1.0.0",
+  "devProp": 18080,
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
