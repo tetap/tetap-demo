@@ -145,6 +145,11 @@ async function drawFileHandle(file?: File) {
 
 async function drawImageFile(file: File) {
   if (!canvasEl || !ctx || !file) return
+  cacheMap.forEach((cache) => {
+    if (cache?.video) {
+      cache.video.pause()
+    }
+  })
   let image = cacheMap.get(file)?.image
   currentDrawFile = file
   if (!image) {
