@@ -13,5 +13,8 @@ export default defineConfig({
     ],
     sidebar,
     socialLinks: [{ icon: 'github', link: 'https://github.com/tetap/tetap-demo' }]
+  },
+  vite: {
+    plugins: []
   }
 })

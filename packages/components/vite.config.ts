@@ -7,7 +7,7 @@ import dts from 'vite-plugin-dts'
 // https://vitejs.dev/config/
 export default defineConfig({
   base: './',
-  plugins: [vue(), vueJsx(), dts({ exclude: 'css/**' })],
+  plugins: [vue(), vueJsx(), dts({ exclude: 'css/**', outputDir: ['./dist/es', './dist/lib'] })],
   build: {
     target: 'modules',
     //打包文件目录
@@ -19,22 +19,39 @@ export default defineConfig({
     rollupOptions: {
       //忽略打包vue
       external: ['vue'],
-      input: ['./index.ts'],
-      output: {
-        format: 'es',
-        entryFileNames: '[name].js',
-        //让打包目录和我们目录对应
-        preserveModules: true,
-        sourcemap: true,
-        exports: 'named',
-        //配置打包根目录
-        dir: fileURLToPath(new URL('./dist/es', import.meta.url))
-      }
+      input: ['./src/index.ts'],
+      output: [
+        {
+          format: 'es',
+          entryFileNames: '[name].js',
+          //让打包目录和我们目录对应
+          preserveModules: true,
+          sourcemap: true,
+          exports: 'named',
+          //配置打包根目录
+          dir: fileURLToPath(new URL('./dist/es', import.meta.url))
+        },
+        {
+          format: 'cjs',
+          entryFileNames: '[name].js',
+          //让打包目录和我们目录对应
+          preserveModules: true,
+          sourcemap: true,
+          exports: 'named',
+          //配置打包根目录
+          dir: fileURLToPath(new URL('./dist/lib', import.meta.url))
+        }
+      ]
     },
     lib: {
-      entry: './index.ts',
+      entry: './src/index.ts',
       name: '@tetap/components',
-      formats: ['es']
+      formats: ['es', 'cjs']
+    }
+  },
+  resolve: {
+    alias: {
+      '@tetap/components': fileURLToPath(new URL('./src/index.ts', import.meta.url))
     }
   }
 })

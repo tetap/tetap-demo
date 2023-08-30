@@ -1,3 +1,1 @@
-import '../css/index.css'
-
-export * from './Basic/Button'
+export * from './basic'

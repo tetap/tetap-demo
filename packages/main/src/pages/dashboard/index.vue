@@ -15,6 +15,10 @@
           {{ demo.name }}
         </a>
       </div>
+      <tetap-button>BUTTON</tetap-button>
+      <tetap-button>BUTTON</tetap-button>
+      <tetap-button>BUTTON</tetap-button>
+      <tetap-button>BUTTON</tetap-button>
       <template #footer>
         <Footer />
       </template>

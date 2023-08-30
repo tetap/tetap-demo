@@ -2,7 +2,8 @@ import { defineConfig } from 'vite'
 import path from 'path'
 import eslintPlugin from 'vite-plugin-eslint'
 import vue from '@vitejs/plugin-vue'
-
+import Components from 'unplugin-vue-components/vite'
+import { TetapComponents } from '@tetap/components/resolver'
 // https://vitejs.dev/config/
 export default defineConfig({
   base: './',
@@ -18,6 +19,9 @@ export default defineConfig({
         'App.vue'
       ],
       exclude: ['./node_modules/**']
+    }),
+    Components({
+      resolvers: [TetapComponents()]
     })
   ],
   esbuild: {

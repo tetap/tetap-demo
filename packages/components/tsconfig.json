@@ -14,10 +14,18 @@
     "lib": ["esnext", "dom"],
     "skipLibCheck": true,
     "paths": {
+      "@tetap/components": ["src/index.ts"],
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "index.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "types/**/*.ts",
+    "src/**/*.vue",
+    "index.ts"
+  ],
   "exclude": ["node_modules", "dist", "release", "src/**/*.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
