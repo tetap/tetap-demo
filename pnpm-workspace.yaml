@@ -1,6 +1,6 @@
 packages:
   - packages/*
   - wasm/**
-  - test/**
+  - external/**
   - demo/**
   - '!**/dist/**'

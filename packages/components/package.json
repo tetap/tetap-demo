@@ -40,7 +40,7 @@
   "license": "MIT",
   "devDependencies": {
     "@ruabick/md-demo-plugins": "latest",
-    "@ruabick/vite-plugin-gen-api-doc": "latest",
+    "@tetap/vite-plugin-gen-api-doc": "workspace:*",
     "@ruabick/vite-plugin-gen-temp": "latest",
     "@ruabick/vitepress-demo-block": "latest",
     "@types/lodash-es": "^4.17.8",

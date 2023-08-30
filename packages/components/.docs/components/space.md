@@ -13,6 +13,7 @@ realPath: src/basic/space/__docs__/space.md
 <demo src="./direction.vue"></demo>
 
 ## 自定义间距
+
 默认: `8px`
 
 通过调整 size 的值来控制间距的大小。传入 number 类型时，会默认使用 px 单位；
@@ -36,4 +37,6 @@ realPath: src/basic/space/__docs__/space.md
 
 <demo src="./wrap.vue"></demo>
 
-<!-- <API src="../button.vue" lang="zh"></API> -->
+## API
+
+<API src="../types/index.ts"></API>

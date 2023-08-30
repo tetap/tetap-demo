@@ -29,6 +29,6 @@ export const spaceProps = () => ({
   fill: { type: Boolean, default: false }
 })
 
-export type SpaceProps = Partial<ExtractPropTypes<ReturnType<typeof spaceProps>>>
+export type SpacePropsType = Partial<ExtractPropTypes<ReturnType<typeof spaceProps>>>
 
 export default spaceProps

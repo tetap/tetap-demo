@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 import { applyPlugins } from '@ruabick/md-demo-plugins'
 import { genTemp } from '@ruabick/vite-plugin-gen-temp'
-import { genApiDoc } from '@ruabick/vite-plugin-gen-api-doc'
+import { genApiDoc } from '@tetap/vite-plugin-gen-api-doc'
 import { fileURLToPath } from 'url'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import sidebar from './sidebar'
