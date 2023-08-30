@@ -51,7 +51,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@tetap/components': fileURLToPath(new URL('./src/index.ts', import.meta.url))
+      '@tetap/components': fileURLToPath(new URL('./src', import.meta.url))
     }
   }
 })

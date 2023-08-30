@@ -15,6 +15,7 @@
     "skipLibCheck": true,
     "paths": {
       "@tetap/components": ["src/index.ts"],
+      "@tetap/components/*": ["src/*"],
       "@/*": ["src/*"]
     }
   },

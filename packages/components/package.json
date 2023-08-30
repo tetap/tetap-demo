@@ -43,6 +43,7 @@
     "@ruabick/vite-plugin-gen-api-doc": "latest",
     "@ruabick/vite-plugin-gen-temp": "latest",
     "@ruabick/vitepress-demo-block": "latest",
+    "@types/lodash-es": "^4.17.8",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
     "@vitejs/plugin-vue": "^3.2.0",
@@ -67,6 +68,7 @@
     "vue-tsc": "^1.8.8"
   },
   "dependencies": {
+    "lodash-es": "^4.17.21",
     "normalize.css": "^8.0.1"
   }
 }
