@@ -1,4 +1,6 @@
 ---
+title: Button
+subtitle: 按钮
 map:
   path: /components/
 ---

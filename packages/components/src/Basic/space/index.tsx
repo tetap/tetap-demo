@@ -1,10 +1,12 @@
 import { computed, CSSProperties, defineComponent } from 'vue'
-import spaceProps from './types'
+import spaceProps, { SpaceSlot } from './types'
 import { getMargin, filterEmpty } from './utils'
 import '../../../css/index.css'
 
 export const Space = defineComponent({
+  name: 'TetapSpace',
   props: spaceProps(),
+  slots: Object as SpaceSlot,
   setup(props, { slots }) {
     const flex = computed(() => {
       const className = []
@@ -21,8 +23,8 @@ export const Space = defineComponent({
     })
 
     const align = computed(() => {
-      if (props.direction === 'vertical') return ''
-      switch (props.align) {
+      const align = props.align || (props.direction === 'vertical' ? '' : 'center')
+      switch (align) {
         case 'start':
           return 'items-start'
         case 'end':
@@ -30,8 +32,9 @@ export const Space = defineComponent({
         case 'baseline':
           return 'items-baseline'
         case 'center':
-        default:
           return 'items-center'
+        default:
+          return ''
       }
     })
     function getMarginStyle(isLast: boolean): CSSProperties {
@@ -65,3 +68,5 @@ export const Space = defineComponent({
     }
   }
 })
+
+export * from './types'

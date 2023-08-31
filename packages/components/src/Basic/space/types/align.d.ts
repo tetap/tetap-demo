@@ -1,1 +1,1 @@
-export type AlignType = 'start' | 'end' | 'center' | 'baseline'
+export type SpaceAlignType = 'start' | 'end' | 'center' | 'baseline'

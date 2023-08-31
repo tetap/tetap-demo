@@ -65,6 +65,6 @@ async function getApiMarkdown(apiComponent: string, localeConfigs: LocaleConfigs
       ? await parseVue(srcPath)
       : await parseInterface(srcPath)
   const apiMdContents = await getApiTmpl(componentDoc, 'component', lang)
-
+  console.log(srcPath, componentDoc)
   return apiMdContents || `${srcPath}'s api is empty!`
 }

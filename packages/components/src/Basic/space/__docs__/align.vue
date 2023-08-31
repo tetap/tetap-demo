@@ -1,34 +1,22 @@
 <script lang="ts" setup>
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { Button, Space } from '@tetap/components'
-import { AlignType } from '@tetap/components/basic/space/types/align'
+import type { SpaceAlignType } from '@tetap/components'
 
-const aligns = computed<AlignType[]>(() => {
+const aligns = computed<SpaceAlignType[]>(() => {
   return ['start', 'end', 'center', 'baseline']
 })
-
-const current = ref<AlignType>('center')
-
-function handleClick(align: AlignType) {
-  current.value = align
-}
 </script>
 
 <template>
-  <Space direction="vertical">
-    <Space>
-      <Button
-        v-for="item in aligns"
-        :key="item"
-        :type="item === current ? 'primary' : 'default'"
-        @click="handleClick(item)"
-      >
-        {{ item }}
-      </Button>
-    </Space>
-    <div style="background-color: #f2f2f2; padding: 8px">
-      <Space :align="current">
-        <Button type="primary">{{ current }}</Button>
+  <Space wrap>
+    <div
+      v-for="item in aligns"
+      :key="item"
+      style="background-color: #f2f2f2; padding: 8px; width: fit-content"
+    >
+      <Space :align="item">
+        <Button type="primary">{{ item }}</Button>
         <div style="padding: 60px 30px; background-color: #fff">Block</div>
       </Space>
     </div>

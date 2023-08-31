@@ -1,6 +1,6 @@
 import { ExtractPropTypes, PropType, SlotsType } from 'vue'
-import { SizeType } from './size'
-import { ButtonHTMLType, ButtonType } from './type'
+import type { ButtonSizeType } from './size'
+import type { ButtonHTMLType, ButtonType } from './type'
 
 export const buttonProps = () => ({
   /**
@@ -10,7 +10,7 @@ export const buttonProps = () => ({
   /**
    * 尺寸
    */
-  size: { type: String as PropType<SizeType>, default: 'normal' },
+  size: { type: String as PropType<ButtonSizeType>, default: 'normal' },
   /**
    * 设置 `button` 原生的 type 值
    */
@@ -39,5 +39,7 @@ export type ButtonSlot = SlotsType<{
   icon: any
   default: any
 }>
+
+export type { ButtonHTMLType, ButtonType, ButtonSizeType }
 
 export default buttonProps

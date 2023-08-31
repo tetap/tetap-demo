@@ -3,6 +3,7 @@ import buttonProps, { ButtonSlot } from './types'
 import '../../../css/index.css'
 
 export const Button = defineComponent({
+  name: 'TetapButton',
   props: buttonProps(),
   slots: Object as ButtonSlot,
   setup(props, { slots }) {
@@ -30,3 +31,5 @@ export const Button = defineComponent({
     )
   }
 })
+
+export * from './types'

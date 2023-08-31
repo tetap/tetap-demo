@@ -1,7 +1,9 @@
 ---
+title: Space
+subtitle: 间距
 map:
   path: /components/
-realPath: src/basic/space/__docs__/space.md
+realPath: src\basic\space\__docs__\space.md
 ---
 
 ## 基础用法
@@ -28,7 +30,8 @@ realPath: src/basic/space/__docs__/space.md
 
 通过调整 align 的值来设置子元素的对齐方式, 可选值为 `start`, `center` ,`end` ,`baseline`。
 
-只在水平模式下生效。默认: `center`
+水平模式。默认: `center`
+垂直模式。默认: ``
 <demo src="./align.vue"></demo>
 
 ## 自动换行
@@ -39,4 +42,25 @@ realPath: src/basic/space/__docs__/space.md
 
 ## API
 
-<API src="../types/index.ts"></API>
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| direction | 间距方向	可选值为 | `vertical`\|`horizontal` | `horizontal` |
+| size | 间距大小, 默认单位为 `px`，支持数组形式来分别设置横向和纵向间距 | Number, String, [Number,Number], [String,String] | `8px` |
+| align | 设置子元素的对齐方式 | `start`\|`end`\|`center`\|`baseline` | - |
+| wrap | 是否自动换行，仅适用于水平方向排列 | Boolean | `false` |
+| fill | 是否让 `Space` 变为一个块级元素，填充整个父元素 | Boolean | `false` |
+
+## Slots
+| 名称 | 说明 |
+| --- | --- |
+| default | 间距组件内容 |
+
+## 类型定义
+``` ts
+import type {
+  SpaceAlignType,
+  SpaceDirectionType,
+  SpaceSizeType,
+  SpacePropsType
+} from '@tetap/components'
+```

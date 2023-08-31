@@ -1,1 +1,1 @@
-export type SizeType = number | string | [number, number] | [string, string]
+export type SpaceSizeType = number | string | [number, number] | [string, string]
