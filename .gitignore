@@ -34,3 +34,6 @@ Cargo.lock
 pkg
 .rsw
 cache
+
+# docs
+.docs
