@@ -1,5 +1,15 @@
 import { computed, defineComponent } from 'vue'
 import buttonProps, { ButtonSlot } from './types'
+import {
+  successFill,
+  warningFill,
+  errorFill,
+  primaryFill,
+  successStroke,
+  warningStroke,
+  errorStroke,
+  primaryStroke
+} from './style'
 import '../../../css/index.css'
 
 export const Button = defineComponent({
@@ -11,7 +21,7 @@ export const Button = defineComponent({
       switch (props.size) {
         case 'normal':
         default:
-          return 'rounded-md px-3.5 py-2.5 text-sm'
+          return 'rounded-md px-3 py-2 text-sm'
       }
     })
     const block = computed(() => {
@@ -20,27 +30,29 @@ export const Button = defineComponent({
     const type = computed(() => {
       switch (props.type) {
         case 'success':
-          return 'text-white bg-success-7 hover:bg-success-6 active:bg-success-8 focus:outline-success-8 focus-visible:outline-success-8 focus-visible:bg-success-8'
+          return props.plain ? successStroke : successFill
         case 'warning':
-          return 'text-white bg-warning-7 hover:bg-warning-6 active:bg-warning-8 focus:outline-warning-8 focus-visible:outline-warning-8 focus-visible:bg-warning-8'
+          return props.plain ? warningStroke : warningFill
         case 'error':
-          return 'text-white bg-error-7 hover:bg-error-6 active:bg-error-8 focus:outline-error-8 focus-visible:outline-error-8 focus-visible:bg-error-8'
-        case 'text':
-          return ''
+          return props.plain ? errorStroke : errorFill
         case 'primary':
-          return 'text-white shadow-md shadow-primary-2 bg-primary-7 hover:bg-primary-6 active:bg-primary-8 focus:outline-primary-8 focus-visible:outline-primary-8 focus-visible:bg-primary-8'
+          return props.plain ? primaryStroke : primaryFill
+        case 'text':
+          return 'border border-solid border-transparent text-black-8 hover:bg-gray-2 active:bg-gray-3 focus:outline-black-3 focus-visible:outline-black-3 focus-visible:bg-gray-3 focus-visible:outline-gray-3'
         default:
-          return 'border-black'
+          return 'border border-solid text-black-8 border-black-3 hover:bg-gray-1 active:bg-gray-2 focus:outline-black-3 focus-visible:outline-black-3 focus-visible:bg-gray-2'
       }
     })
     return () => (
       <button
         class={[
+          'outline-none outline-offset-4 select-none whitespace-nowrap text-ellipsis overflow-hidden relative',
           size.value,
           block.value,
           type.value,
-          'cursor-pointer transition outline-none select-none whitespace-nowrap text-ellipsis overflow-hidden relative border border-solid border-transparent box-border'
+          props.disabled ? 'cursor-no-drop' : 'cursor-pointer'
         ]}
+        disabled={props.disabled}
         type={props.htmlType}
       >
         <div>{slots.default?.()}</div>

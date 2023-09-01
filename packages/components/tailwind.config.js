@@ -51,6 +51,30 @@ export default {
           8: 'rgb(var(--tetap-error-8, 198 39 15))',
           9: 'rgb(var(--tetap-error-9, 163 36 17))',
           10: 'rgb(var(--tetap-error-10, 135 36 21))'
+        },
+        gray: {
+          1: 'rgb(var(--tetap-gray-1, 247 247 247))',
+          2: 'rgb(var(--tetap-gray-2, 237 237 237))',
+          3: 'rgb(var(--tetap-gray-3, 217 217 217))',
+          4: 'rgb(var(--tetap-gray-4, 200 200 200))',
+          5: 'rgb(var(--tetap-gray-5, 173 173 173))',
+          6: 'rgb(var(--tetap-gray-6, 153 153 153))',
+          7: 'rgb(var(--tetap-gray-7, 136 136 136))',
+          8: 'rgb(var(--tetap-gray-8, 123 123 123))',
+          9: 'rgb(var(--tetap-gray-9, 103 103 103))',
+          10: 'rgb(var(--tetap-gray-10, 84 84 84))'
+        },
+        black: {
+          1: 'rgb(var(--tetap-black-1, 246 246 246))',
+          2: 'rgb(var(--tetap-black-2, 231 231 231))',
+          3: 'rgb(var(--tetap-black-3, 209 209 209))',
+          4: 'rgb(var(--tetap-black-4, 176 176 176))',
+          5: 'rgb(var(--tetap-black-5, 136 136 136))',
+          6: 'rgb(var(--tetap-black-6, 109 109 109))',
+          7: 'rgb(var(--tetap-black-7, 93 93 93))',
+          8: 'rgb(var(--tetap-black-8, 79 79 79))',
+          9: 'rgb(var(--tetap-black-9, 69 69 69))',
+          10: 'rgb(var(--tetap-black-10, 50 50 50))'
         }
       }
     }

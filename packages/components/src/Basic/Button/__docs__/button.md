@@ -7,8 +7,14 @@ map:
 
 ## 按钮类型
 
-渲染效果如下
-
 <demo src="./type.vue"></demo>
+
+## 朴素按钮
+
+<demo src="./plain.vue"></demo>
+
+## 禁用状态
+
+<demo src="./disabled.vue"></demo>
 
 <!-- <API src="../button.vue" lang="zh"></API> -->

@@ -30,7 +30,11 @@ export const buttonProps = () => ({
   /**
    * 是否设置为块按钮铺满
    */
-  block: { type: Boolean, default: false }
+  block: { type: Boolean, default: false },
+  /**
+   * 是否朴素按钮
+   */
+  plain: { type: Boolean, default: false }
 })
 
 export type ButtonProps = Partial<ExtractPropTypes<ReturnType<typeof buttonProps>>>
