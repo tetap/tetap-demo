@@ -5,15 +5,34 @@ use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
 #[allow(dead_code)]
-pub fn promotion(data: &mut [u8], brightness: f32, contrast: f32) {
+pub fn promotion(data: &mut [u8], brightness: f64, contrast: f64) {
     let len = data.len();
+    let brightness_strength = 255.0 * (brightness * 0.5);
+    let contrast_strength = f64::powi((contrast * 0.5) + 1.0, 2);
     for i in (0..len).step_by(4) {
-        let r = data[i] as f32;
-        let g = data[i + 1] as f32;
-        let b = data[i + 2] as f32;
-        data[i] = ((contrast + 1.0) * r + brightness * 255.0) as u8;
-        data[i + 1] = ((contrast + 1.0) * g + brightness * 255.0) as u8;
-        data[i + 2] = ((contrast + 1.0) * b + brightness * 255.0) as u8;
+        let mut r = f64::min((data[i] as f64) + brightness_strength, 255.0);
+        let mut g = f64::min((data[i + 1] as f64) + brightness_strength, 255.0);
+        let mut b = f64::min((data[i + 2] as f64) + brightness_strength, 255.0);
+        r /= 255.0;
+        r -= 0.5;
+        r *= contrast_strength;
+        r += 0.5;
+        r *= 255.0;
+
+        g /= 255.0;
+        g -= 0.5;
+        g *= contrast_strength;
+        g += 0.5;
+        g *= 255.0;
+
+        b /= 255.0;
+        b -= 0.5;
+        b *= contrast_strength;
+        b += 0.5;
+        b *= 255.0;
+        data[i] = r as u8;
+        data[i + 1] = g as u8;
+        data[i + 2] = b as u8;
     }
 }
 
