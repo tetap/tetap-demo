@@ -17,4 +17,16 @@ map:
 
 <demo src="./disabled.vue"></demo>
 
+## 尺寸
+
+<demo src="./size.vue"></demo>
+
+## 圆形按钮
+
+<demo src="./rounded.vue"></demo>
+
+## 加载效果
+
+<demo src="./loading.vue"></demo>
+
 <!-- <API src="../button.vue" lang="zh"></API> -->

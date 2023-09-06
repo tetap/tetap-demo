@@ -1,1 +1,1 @@
-export type ButtonSizeType = 'normal' | 'large' | 'small'
+export type ButtonSizeType = 'xs' | 'sm' | 'md' | 'lg' | 'xl'

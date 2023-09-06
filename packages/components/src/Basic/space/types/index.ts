@@ -1,4 +1,4 @@
-import { ExtractPropTypes, PropType, SlotsType } from 'vue'
+import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
 import type { SpaceAlignType } from './align'
 import type { SpaceDirectionType } from './direction'
 import type { SpaceSizeType } from './size'

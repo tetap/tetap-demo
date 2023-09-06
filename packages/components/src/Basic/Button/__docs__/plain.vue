@@ -9,6 +9,5 @@ import { Space, Button } from '@tetap/components'
     <Button plain type="warning">警告按钮</Button>
     <Button plain type="error">错误按钮</Button>
     <Button plain type="default">默认按钮</Button>
-    <Button plain type="text">文本按钮</Button>
   </Space>
 </template>

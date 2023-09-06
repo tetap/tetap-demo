@@ -1,4 +1,4 @@
-import { ExtractPropTypes, PropType, SlotsType } from 'vue'
+import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
 import type { ButtonSizeType } from './size'
 import type { ButtonHTMLType, ButtonType } from './type'
 
@@ -10,7 +10,7 @@ export const buttonProps = () => ({
   /**
    * 尺寸
    */
-  size: { type: String as PropType<ButtonSizeType>, default: 'normal' },
+  size: { type: String as PropType<ButtonSizeType>, default: 'md' },
   /**
    * 设置 `button` 原生的 type 值
    */
@@ -28,13 +28,21 @@ export const buttonProps = () => ({
    */
   loadingDelay: { type: Number, default: 300 },
   /**
+   * 加载时显示文本
+   */
+  loadingText: { type: String, default: '' },
+  /**
    * 是否设置为块按钮铺满
    */
   block: { type: Boolean, default: false },
   /**
    * 是否朴素按钮
    */
-  plain: { type: Boolean, default: false }
+  plain: { type: Boolean, default: false },
+  /**
+   * 是否圆形按钮
+   */
+  round: { type: Boolean, default: false }
 })
 
 export type ButtonProps = Partial<ExtractPropTypes<ReturnType<typeof buttonProps>>>
