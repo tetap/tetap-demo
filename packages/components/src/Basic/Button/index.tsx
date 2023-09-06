@@ -31,7 +31,7 @@ export const Button = defineComponent({
         disabled={isDisabled.value}
         type={props.htmlType}
       >
-        <div class={'flex items-center gap-2'}>
+        <div class={'flex items-center justify-center gap-2'}>
           {innerLoading.value && <Spin />}
           {slots.default?.()}
         </div>
