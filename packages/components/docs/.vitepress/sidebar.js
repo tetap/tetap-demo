@@ -6,6 +6,10 @@ export default {
         { text: 'Button 按钮', link: '/components/button' },
         { text: 'Space 间距', link: '/components/space' }
       ]
+    },
+    {
+      text: '反馈',
+      items: [{ text: 'Modal 对话框', link: '/components/modal' }]
     }
   ]
 }
