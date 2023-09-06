@@ -2,6 +2,7 @@ import { computed, defineComponent } from 'vue'
 import buttonProps, { ButtonSlot } from './types'
 import { useDelay } from '../../hooks'
 import { ButtonTheme } from './theme'
+import { Spin } from '../icon'
 import '../../../css/index.css'
 
 export const Button = defineComponent({
@@ -30,8 +31,8 @@ export const Button = defineComponent({
         disabled={isDisabled.value}
         type={props.htmlType}
       >
-        <div class={'flex items-center'}>
-          {innerLoading.value && <div>Loading...</div>}
+        <div class={'flex items-center gap-2'}>
+          {innerLoading.value && <Spin />}
           {slots.default?.()}
         </div>
       </button>

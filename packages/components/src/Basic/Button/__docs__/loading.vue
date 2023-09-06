@@ -17,5 +17,8 @@ function handleClick() {
   <Space wrap>
     <Button loading type="primary">主要按钮</Button>
     <Button :loading="loading" type="primary" @click="handleClick">点击</Button>
+    <Button :loading="loading" :loading-delay="300" type="primary" @click="handleClick">
+      延迟300ms后出现加载效果
+    </Button>
   </Space>
 </template>

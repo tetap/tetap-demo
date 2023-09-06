@@ -26,11 +26,7 @@ export const buttonProps = () => ({
   /**
    * 加载效果延迟
    */
-  loadingDelay: { type: Number, default: 300 },
-  /**
-   * 加载时显示文本
-   */
-  loadingText: { type: String, default: '' },
+  loadingDelay: { type: Number, default: 0 },
   /**
    * 是否设置为块按钮铺满
    */

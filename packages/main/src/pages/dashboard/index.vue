@@ -15,7 +15,7 @@
           {{ demo.name }}
         </a>
       </div>
-      <tetap-button>BUTTON</tetap-button>
+      <tetap-button class="animate-spin">BUTTON</tetap-button>
       <tetap-button>BUTTON</tetap-button>
       <tetap-button>BUTTON</tetap-button>
       <tetap-button>BUTTON</tetap-button>

@@ -1,5 +1,4 @@
 import { defineComponent } from 'vue'
-import '../../../css/index.css'
 
 export const SpinOutlined = defineComponent({
   name: 'TetapSpinOutlined',
