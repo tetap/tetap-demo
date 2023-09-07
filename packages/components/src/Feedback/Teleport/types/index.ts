@@ -1,7 +1,8 @@
 import type { ExtractPropTypes, PropType, RendererElement, SlotsType } from 'vue'
 
 export const customTeleportProps = () => ({
-  to: { type: [String, Object] as PropType<string | RendererElement>, default: 'body' }
+  to: { type: [String, Object] as PropType<string | RendererElement>, default: 'body' },
+  open: { type: Boolean, default: false }
 })
 export type CustomTeleportProps = Partial<ExtractPropTypes<ReturnType<typeof customTeleportProps>>>
 

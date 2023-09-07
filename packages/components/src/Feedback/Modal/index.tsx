@@ -7,7 +7,7 @@ export const Modal = defineComponent({
   name: 'TetapModal',
   props: modalProps(),
   slots: Object as ModalSlot,
-  setup() {
-    return () => <CustomTeleport>Modal</CustomTeleport>
+  setup(props) {
+    return () => <CustomTeleport open={props.open}>Modal</CustomTeleport>
   }
 })

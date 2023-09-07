@@ -1,3 +1,8 @@
+/*
+ *@description: 效果延迟
+ *@author: zyc
+ *@date-time: 2023-09-07 15:00:58
+ */
 import { computed, onBeforeUnmount, ComputedRef, shallowRef, watch } from 'vue'
 
 export function useDelay(delay: ComputedRef<number>, loading: ComputedRef<boolean>) {

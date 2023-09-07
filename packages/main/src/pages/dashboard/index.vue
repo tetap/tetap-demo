@@ -27,8 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { onBeforeMount } from 'vue'
+import { onBeforeMount, ref, computed } from 'vue'
 import Sider from './components/Sider.vue'
 import Footer from './components/Footer.vue'
 import Container from './components/Container.vue'
