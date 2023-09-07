@@ -18,7 +18,7 @@ export default defineConfig({
     cssCodeSplit: true,
     rollupOptions: {
       //忽略打包vue
-      external: ['vue'],
+      external: ['vue', 'tailwind-variants'],
       input: ['./src/index.ts'],
       output: [
         {

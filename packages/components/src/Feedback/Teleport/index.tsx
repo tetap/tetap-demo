@@ -1,6 +1,5 @@
 import { Teleport, defineComponent, toRefs } from 'vue'
-import { uniqueId } from 'lodash-es'
-import { useTransition } from '../../hooks'
+import { useTransition, useUniqueId } from '../../hooks'
 import customTeleportProps, { CustomTeleportSlot } from './types'
 import '../../../css/index.css'
 
@@ -11,7 +10,7 @@ export const CustomTeleport = defineComponent({
   setup(props, { slots, emit }) {
     const state = toRefs(props)
     const { display, onTransitionEnd } = useTransition(state.open, 400)
-    const key = uniqueId()
+    const key = useUniqueId()
     const handleMaskClick = () => {
       emit('update:open', false)
     }

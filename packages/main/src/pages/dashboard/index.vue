@@ -15,10 +15,12 @@
           {{ demo.name }}
         </a>
       </div>
-      <tetap-button class="animate-spin">BUTTON</tetap-button>
-      <tetap-button>BUTTON</tetap-button>
-      <tetap-button>BUTTON</tetap-button>
-      <tetap-button>BUTTON</tetap-button>
+      <tetap-space>
+        <tetap-button type="primary">BUTTON</tetap-button>
+        <tetap-button>BUTTON</tetap-button>
+        <tetap-button>BUTTON</tetap-button>
+        <tetap-button>BUTTON</tetap-button>
+      </tetap-space>
       <template #footer>
         <Footer />
       </template>
