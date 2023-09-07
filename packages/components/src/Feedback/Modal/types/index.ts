@@ -1,7 +1,8 @@
 import type { ExtractPropTypes, SlotsType } from 'vue'
+import customTeleportProps from '../../Teleport/types'
 
 export const modalProps = () => ({
-  open: { type: Boolean, default: false }
+  ...customTeleportProps()
 })
 
 export type ModalPropsType = Partial<ExtractPropTypes<ReturnType<typeof modalProps>>>
