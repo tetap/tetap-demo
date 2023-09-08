@@ -5,7 +5,9 @@ export default {
     extend: {
       animation: {
         fadeIn: 'fadeIn 0.3s ease-in-out forwards',
-        fadeOut: 'fadeOut 0.3s ease-in-out forwards'
+        fadeOut: 'fadeOut 0.3s ease-in-out forwards',
+        fadeInUp: 'fadeInUp 0.3s ease-in-out forwards',
+        fadeOutDown: 'fadeOutDown 0.3s ease-in-out forwards'
       },
       keyframes: () => ({
         fadeIn: {
@@ -15,6 +17,14 @@ export default {
         fadeOut: {
           '0%': { opacity: 1 },
           '100%': { opacity: 0 }
+        },
+        fadeInUp: {
+          '0%': { opacity: 0, transform: 'translate3d(0,-100%,0)' },
+          '100%': { opacity: 1, transform: 'translateZ(0)' }
+        },
+        fadeOutDown: {
+          '0%': { opacity: 1, transform: 'translateZ(0)' },
+          '100%': { opacity: 0, transform: 'translate3d(0,100%,0)' }
         }
       }),
       colors: {

@@ -38,7 +38,10 @@ export const buttonProps = () => ({
   /**
    * 是否圆形按钮
    */
-  round: { type: Boolean, default: false }
+  round: { type: Boolean, default: false },
+
+  /** 点击事件 */
+  onClick: Function as PropType<(e: MouseEvent) => void>
 })
 
 export type ButtonProps = Partial<ExtractPropTypes<ReturnType<typeof buttonProps>>>

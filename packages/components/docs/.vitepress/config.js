@@ -9,7 +9,7 @@ import sidebar from './sidebar'
 export default defineConfig({
   lang: 'zh-CN',
   title: 'Tetap',
-  titleTemplate: false,
+  titleTemplate: "Tetap",
   lastUpdated: true,
   head: [
     [

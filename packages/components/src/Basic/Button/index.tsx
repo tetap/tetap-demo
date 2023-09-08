@@ -9,7 +9,7 @@ export const Button = defineComponent({
   name: 'TetapButton',
   props: buttonProps(),
   slots: Object as ButtonSlot,
-  setup(props, { slots }) {
+  setup(props, { slots, emit }) {
     const loadingDelay = computed(() => props.loadingDelay)
     const loading = computed(() => props.loading)
     const { innerLoading } = useDelay(loadingDelay, loading)
@@ -30,6 +30,7 @@ export const Button = defineComponent({
         ]}
         disabled={isDisabled.value}
         type={props.htmlType}
+        onClick={(event) => emit('click', event)}
       >
         <div class={'flex items-center justify-center gap-2'}>
           {innerLoading.value && <Spin />}
