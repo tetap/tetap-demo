@@ -4,6 +4,7 @@ import customTeleportProps from '../../Teleport/types'
 export const modalProps = () => ({
   header: { type: Boolean, default: true },
   footer: { type: Boolean, default: true },
+  body: { type: Boolean, default: true },
   title: { type: String, default: '' },
   ...customTeleportProps()
 })
