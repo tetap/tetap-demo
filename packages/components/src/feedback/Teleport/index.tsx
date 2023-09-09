@@ -63,7 +63,7 @@ export const CustomTeleport = defineComponent({
             <div
               class={[
                 'pointer-events-auto relative m-auto',
-                props.open ? 'animate-fadeInUp' : 'animate-fadeOutDown'
+                props.open ? 'animate-fadeInUp' : 'animate-fadeOutZoom'
               ]}
               style={{ width: '500px' }}
               onMousedown={onContentMouseDown}

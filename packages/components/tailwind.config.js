@@ -7,7 +7,8 @@ export default {
         fadeIn: 'fadeIn 0.3s ease-in-out forwards',
         fadeOut: 'fadeOut 0.3s ease-in-out forwards',
         fadeInUp: 'fadeInUp 0.3s ease-in-out forwards',
-        fadeOutDown: 'fadeOutDown 0.3s ease-in-out forwards'
+        fadeOutDown: 'fadeOutDown 0.3s ease-in-out forwards',
+        fadeOutZoom: 'fadeOutZoom 0.3s ease-in-out forwards'
       },
       keyframes: () => ({
         fadeIn: {
@@ -25,6 +26,10 @@ export default {
         fadeOutDown: {
           '0%': { opacity: 1, transform: 'translateZ(0)' },
           '100%': { opacity: 0, transform: 'translate3d(0,100%,0)' }
+        },
+        fadeOutZoom: {
+          '0%': { opacity: 1, transform: 'scale3d(1, 1, 1)' },
+          '100%': { opacity: 0, transform: 'scale3d(0.8, 0.8, 1)' }
         }
       }),
       colors: {
