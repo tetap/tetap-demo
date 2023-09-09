@@ -1,6 +1,5 @@
 import { defineComponent, PropType, SlotsType } from 'vue'
 import { Button, Space } from '../../basic'
-import '../../../css/index.css'
 import { createTranslate } from '@tetap/components/locale'
 
 export const ModalFooter = defineComponent({

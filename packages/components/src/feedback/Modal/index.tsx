@@ -2,7 +2,6 @@ import { defineComponent } from 'vue'
 import modalProps, { ModalSlot } from './types'
 import { CustomTeleport } from '../Teleport'
 import { ModalHeader } from './ModalHeader'
-import '../../../css/index.css'
 import { ModalFooter } from './ModalFooter'
 
 export const Modal = defineComponent({

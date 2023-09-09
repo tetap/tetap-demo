@@ -1,7 +1,6 @@
 import { computed, CSSProperties, defineComponent } from 'vue'
 import spaceProps, { SpaceSlot } from './types'
 import { getMargin, filterEmpty } from './utils'
-import '../../../css/index.css'
 
 export const Space = defineComponent({
   name: 'TetapSpace',

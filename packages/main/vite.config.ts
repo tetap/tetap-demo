@@ -21,7 +21,7 @@ export default defineConfig({
       exclude: ['./node_modules/**']
     }),
     Components({
-      resolvers: [TetapComponents()]
+      resolvers: [TetapComponents({ importStyle: false })]
     })
   ],
   esbuild: {

@@ -1,1 +1,1 @@
-export const TetapComponents = () => any
+export const TetapComponents = (options: { importStyle: boolean }) => any

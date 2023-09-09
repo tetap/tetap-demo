@@ -20,6 +20,9 @@
     },
     "./src/**/*": {
       "import": "./src/**/*"
+    },
+    "./config": {
+      "require": "./tailwind.config.js"
     }
   },
   "files": [

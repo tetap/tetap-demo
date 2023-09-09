@@ -1,6 +1,5 @@
 import { CloseOutlined } from '../../basic/icon'
 import { defineComponent, PropType, SlotsType } from 'vue'
-import '../../../css/index.css'
 
 export const ModalHeader = defineComponent({
   name: 'TetapModalHeader',

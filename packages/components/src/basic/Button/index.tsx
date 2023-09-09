@@ -3,7 +3,6 @@ import buttonProps, { ButtonSlot } from './types'
 import { useDelay } from '../../hooks'
 import { ButtonTheme } from './theme'
 import { Spin } from '../icon'
-import '../../../css/index.css'
 
 export const Button = defineComponent({
   name: 'TetapButton',

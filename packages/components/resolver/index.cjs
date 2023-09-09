@@ -1,4 +1,4 @@
-const TetapComponents = () => {
+const TetapComponents = ({ importStyle }) => {
   /**
    * @param {string} componentName
    */
@@ -9,7 +9,7 @@ const TetapComponents = () => {
         name: component,
         as: componentName,
         from: '@tetap/components',
-        sideEffects: '@tetap/components/style.css'
+        sideEffects: importStyle ? '@tetap/components/style.css' : null
       }
     }
   }

@@ -3,7 +3,6 @@ import { useTransition, useUniqueId } from '../../hooks'
 import customTeleportProps, { CustomTeleportSlot } from './types'
 import KeyCode from '../../utils/KeyCode'
 import ScrollLocker from '../../utils/ScrollLocker'
-import '../../../css/index.css'
 
 export const CustomTeleport = defineComponent({
   name: 'TetapTeleport',
