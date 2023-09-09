@@ -14,20 +14,20 @@ export function useTransition(show: Ref<boolean>, duration: number = 300) {
   // 进入
   function enter() {
     status.value = 'enter'
-    // requestAnimationFrame(() => {
-    if (status.value !== 'enter') {
-      return
-    }
-    inited.value = true
-    display.value = true
-
     requestAnimationFrame(() => {
       if (status.value !== 'enter') {
         return
       }
-      transitionEnded.value = false
+      inited.value = true
+      display.value = true
+
+      requestAnimationFrame(() => {
+        if (status.value !== 'enter') {
+          return
+        }
+        transitionEnded.value = false
+      })
     })
-    // })
   }
 
   // 离开

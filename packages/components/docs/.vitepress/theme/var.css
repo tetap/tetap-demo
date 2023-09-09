@@ -62,3 +62,9 @@
   font-size: 15px;
   font-weight: 600;
 }
+
+@media (min-width: 960px) {
+  .VPNav {
+    position: sticky !important;
+  }
+}

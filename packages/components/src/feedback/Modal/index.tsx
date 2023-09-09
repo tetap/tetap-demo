@@ -12,7 +12,12 @@ export const Modal = defineComponent({
   setup(props, { emit, slots }) {
     const handleUpdateOpen = (value: boolean) => emit('update:open', value)
     return () => (
-      <CustomTeleport width={props.width} open={props.open} onUpdate:open={handleUpdateOpen}>
+      <CustomTeleport
+        width={props.width}
+        open={props.open}
+        keyboard={props.keyboard}
+        onUpdate:open={handleUpdateOpen}
+      >
         <div class={['w-full bg-white overflow-hidden rounded-lg m-auto']}>
           {props.header && (
             <ModalHeader title={props.title} onClose={() => handleUpdateOpen(false)} />

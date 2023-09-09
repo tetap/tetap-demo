@@ -12,6 +12,8 @@ function handleClick() {
 <template>
   <Button type="primary" @click="handleClick">Open Modal</Button>
   <Modal v-model:open="open" title="Basic Modal" :width="500">
-    <div>modal</div>
+    <p>contents</p>
+    <p>contents</p>
+    <p>contents</p>
   </Modal>
 </template>
