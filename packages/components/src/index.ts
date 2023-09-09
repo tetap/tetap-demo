@@ -1,3 +1,3 @@
-export * from './Basic'
+export * from './basic'
 export * from './hooks'
-export * from './Feedback'
+export * from './feedback'
